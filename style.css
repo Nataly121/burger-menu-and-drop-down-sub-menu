@@ -1,0 +1,302 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body.lock {
+    overflow: hidden;
+}
+
+body.pc-screen .menu__list > li:hover .menu__sub-list {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    z-index: 10;
+}
+
+body.pc-screen .menu__list > li:hover .menu__sub-list > li {
+    pointer-events: all;
+}
+
+body.touch-screen .menu__arrow {
+    display: block;
+    /*triangle from borders*/
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent; 
+    border-right: 5px solid transparent;
+    border-top: 10px solid rgb(74, 70, 70);
+    transition: transform 0.3s ease 0.1s;
+    margin-left: 5px;
+}
+
+body.touch-screen .menu__list > li.active .menu__sub-list {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translate(0, 0);
+}
+
+body.touch-screen .menu__list > li.active .menu__arrow {
+    transform: rotate(-180deg);
+}
+
+body.touch-screen .menu__list > li { /*  "для болкк надежной верстки"  */
+    display: flex;
+    align-items: center;
+}
+
+body.touch-screen .menu__link {  /*  "для болкк надежной верстки"  */
+    flex: 1 1 auto;
+}
+
+.page  {
+    padding-top: 90px;
+    background-color: rgb(241, 225, 234);
+}
+
+.page__section {
+    margin: 0 auto;
+    padding: 30px;
+    max-width: 1200px;
+}
+
+.page__section_1 {
+    background-color: rgb(137, 227, 174);
+}
+
+.page__section_2 {
+    background-color: rgb(245, 224, 167);
+}
+
+.page__section_3 {
+    background-color: rgb(170, 181, 236);
+}
+
+.page__section-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.page__section-title::first-letter {
+    color: rgb(226, 43, 134);
+    font-style: italic;
+}
+
+.page__section-text {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+p {
+    margin-bottom: 20px;
+    text-indent: 50px;
+    text-align:justify;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    z-index: 10;
+    background-color: rgb(240, 238, 139);
+}
+
+.header__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 30px 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 70px;
+}
+
+.header__logo {
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    z-index: 20;  
+}
+
+.menu__link {
+    color: rgb(74, 70, 70);
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.menu__link:hover, .menu__sub-link:hover {
+    text-decoration: underline;
+}
+
+.menu__list > li {
+    position: relative;
+    margin-right: 20px;
+}
+
+.menu__arrow {
+    display: none;
+}
+
+.menu__sub-list {
+    position: absolute;
+    top: 100%;
+    padding: 15px;
+    left: 0;
+    background-color: rgb(240, 238, 140);
+    min-width: 140px;
+}
+
+.menu__sub-list li {
+    margin-bottom: 10px;
+}
+
+.menu__sub-list li:last-child {
+    margin-bottom: 0;
+}
+
+.menu__sub-link {
+    color: rgb(74, 70, 70);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.menu__sub-list {
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(0, 7%);
+    transition: all 0.3s ease 0.1s;
+    pointer-events: none; /* == restricts events on an object ==*/
+}
+
+.menu__burger-icon {
+    display: none;
+}
+
+@media screen and (min-width: 767px) {
+    .menu__list {
+        display: flex;
+        align-items: center;
+    }
+    .menu__list > li {
+        padding: 15px 0;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .menu__burger-icon {
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 20px;
+        z-index: 10;
+        cursor: pointer;
+        /* overflow: hidden; */
+    }
+    .menu__burger-icon span {
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 20%;
+        background-color: rgb(74, 70, 70);
+        transition: all 0.3s ease 0.1s;
+    }
+    .menu__burger-icon::before, 
+    .menu__burger-icon::after {
+        display: block;
+        position: absolute;
+        left: 0;
+        background-color: rgb(74, 70, 70);
+        transition: all 0.3s ease 0.1s;
+        width: 100%;
+        height: 20%;
+    }
+    .menu__burger-icon::before, 
+    .menu__burger-icon::after {
+        content: '';
+    }
+    .menu__burger-icon::before {
+        top: 0;
+    }
+    .menu__burger-icon::after {
+        bottom: 0;
+    }
+    .menu__burger-icon span {
+        top: 48%;
+        /*smooth animation of disapperarance*/
+        transform: scale(1) translate(0, -50%); 
+    }
+    /* === burger animation === */
+    .menu__burger-icon.active span {
+        /*smooth animation of disapperarance*/
+        transform: scale(0) translate(0, -50%);
+       
+    }
+    .menu__burger-icon.active::before {
+        top: 48%;
+        transform: rotate(-45deg) translate(0, -50%);
+    }
+    .menu__burger-icon.active::after {
+        bottom: 48%;
+        transform: rotate(45deg) translate(0, 50%);
+    }
+    .menu__body {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        background-color: rgb(240, 238, 140, 0.9);
+        /* z-index: 20; */
+        padding: 100px 30px 30px 30px;
+        transition: left 0.3s ease 0.1s;
+        overflow: auto;
+    }
+    .menu__body.active {
+        left: 0;
+    }
+    .menu__body::before {
+        content: '';
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 81px;
+        background-color: rgb(240, 238, 139);
+        border-bottom: 10px solid rgb(74, 70, 70);
+        z-index: 20;
+    }
+    .menu__list > li {
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+    }
+    .menu__list > li.active .menu__sub-list {
+        display: block;
+    }
+    .menu__list > li:last-child {
+        margin-bottom: 0;
+    }
+    .menu__link {
+        font-size: 1.5rem;
+    }
+    .menu__sub-list {
+        position: relative;
+        background-color: rgb(239, 238, 128);
+        flex: 1 1 100%;
+        margin-top: 30px;
+        display: none;
+    }
+    .menu__sub-link {
+        font-size: 1.3rem;
+    }
+
+}
